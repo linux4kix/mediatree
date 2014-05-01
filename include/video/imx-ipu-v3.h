@@ -93,6 +93,11 @@ int ipu_idmac_channel_irq(struct ipu_soc *ipu, struct ipuv3_channel *channel,
 #define IPU_IRQ_VSYNC_PRE_1		(448 + 15)
 
 /*
+ * IPU Common functions
+ */
+int ipu_get_num(struct ipu_soc *ipu);
+
+/*
  * IPU Image DMA Controller (idmac) functions
  */
 struct ipuv3_channel *ipu_idmac_get(struct ipu_soc *ipu, unsigned channel);

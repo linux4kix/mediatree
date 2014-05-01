@@ -166,6 +166,7 @@ struct ipu_soc {
 	void __iomem		*idmac_reg;
 	struct ipu_ch_param __iomem	*cpmem_base;
 
+	int			id;
 	int			usecount;
 
 	struct clk		*clk;
