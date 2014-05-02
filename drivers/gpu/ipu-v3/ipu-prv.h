@@ -78,6 +78,64 @@ struct ipu_soc;
 #define IPU_DI0_COUNTER_RELEASE			(1 << 24)
 #define IPU_DI1_COUNTER_RELEASE			(1 << 25)
 
+#define FS_PRPENC_ROT_SRC_SEL_MASK     (0xf << 0)
+#define FS_PRPENC_ROT_SRC_SEL_OFFSET   0
+#define FS_PRPVF_ROT_SRC_SEL_MASK      (0xf << 8)
+#define FS_PRPVF_ROT_SRC_SEL_OFFSET    8
+#define FS_PP_ROT_SRC_SEL_MASK         (0xf << 16)
+#define FS_PP_ROT_SRC_SEL_OFFSET       16
+#define FS_PP_SRC_SEL_MASK             (0xf << 12)
+#define FS_PP_SRC_SEL_OFFSET           12
+#define FS_PP_SRC_SEL_VDOA             (1 << 15)
+#define FS_PRP_SRC_SEL_MASK            (0xf << 24)
+#define FS_PRP_SRC_SEL_OFFSET          24
+#define FS_VF_IN_VALID                 (1 << 31)
+#define FS_ENC_IN_VALID                (1 << 30)
+#define FS_VDI_SRC_SEL_MASK            (0x3 << 28)
+#define FS_VDI_SRC_SEL_VDOA            (0x2 << 28)
+#define FS_VDOA_DEST_SEL_MASK          (0x3 << 16)
+#define FS_VDOA_DEST_SEL_VDI           (0x2 << 16)
+#define FS_VDOA_DEST_SEL_IC            (0x1 << 16)
+#define FS_VDI_SRC_SEL_OFFSET          28
+
+#define FS_PRPENC_DEST_SEL_MASK        (0xf << 0)
+#define FS_PRPENC_DEST_SEL_OFFSET      0
+#define FS_PRPVF_DEST_SEL_MASK         (0xf << 4)
+#define FS_PRPVF_DEST_SEL_OFFSET       4
+#define FS_PRPVF_ROT_DEST_SEL_MASK     (0xf << 8)
+#define FS_PRPVF_ROT_DEST_SEL_OFFSET   8
+#define FS_PP_DEST_SEL_MASK            (0xf << 12)
+#define FS_PP_DEST_SEL_OFFSET          12
+#define FS_PP_ROT_DEST_SEL_MASK        (0xf << 16)
+#define FS_PP_ROT_DEST_SEL_OFFSET      16
+#define FS_PRPENC_ROT_DEST_SEL_MASK    (0xf << 20)
+#define FS_PRPENC_ROT_DEST_SEL_OFFSET  20
+
+#define FS_SMFC0_DEST_SEL_MASK         (0xf << 0)
+#define FS_SMFC0_DEST_SEL_OFFSET       0
+#define FS_SMFC1_DEST_SEL_MASK         (0x7 << 4)
+#define FS_SMFC1_DEST_SEL_OFFSET       4
+#define FS_SMFC2_DEST_SEL_MASK         (0xf << 7)
+#define FS_SMFC2_DEST_SEL_OFFSET       7
+#define FS_SMFC3_DEST_SEL_MASK         (0x7 << 11)
+#define FS_SMFC3_DEST_SEL_OFFSET       11
+
+#define FS_DC1_SRC_SEL_MASK            (0xf << 20)
+#define FS_DC1_SRC_SEL_OFFSET          20
+#define FS_DC2_SRC_SEL_MASK            (0xf << 16)
+#define FS_DC2_SRC_SEL_OFFSET          16
+#define FS_DP_SYNC0_SRC_SEL_MASK       (0xf << 0)
+#define FS_DP_SYNC0_SRC_SEL_OFFSET     0
+#define FS_DP_SYNC1_SRC_SEL_MASK       (0xf << 4)
+#define FS_DP_SYNC1_SRC_SEL_OFFSET     4
+#define FS_DP_ASYNC0_SRC_SEL_MASK      (0xf << 8)
+#define FS_DP_ASYNC0_SRC_SEL_OFFSET    8
+#define FS_DP_ASYNC1_SRC_SEL_MASK      (0xf << 12)
+#define FS_DP_ASYNC1_SRC_SEL_OFFSET    12
+
+#define FS_AUTO_REF_PER_MASK           0
+#define FS_AUTO_REF_PER_OFFSET         16
+
 #define IPU_IDMAC_REG(offset)	(offset)
 
 #define IDMAC_CONF			IPU_IDMAC_REG(0x0000)

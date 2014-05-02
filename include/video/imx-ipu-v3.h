@@ -170,6 +170,14 @@ bool ipu_idmac_buffer_is_ready(struct ipuv3_channel *channel, u32 buf_num);
 void ipu_idmac_select_buffer(struct ipuv3_channel *channel, u32 buf_num);
 void ipu_idmac_clear_buffer(struct ipuv3_channel *channel, u32 buf_num);
 
+/* Channel linking functions */
+int ipu_link_prp_enc_rot_enc(struct ipu_soc *ipu);
+int ipu_unlink_prp_enc_rot_enc(struct ipu_soc *ipu);
+int ipu_link_prpvf_rot_prpvf(struct ipu_soc *ipu);
+int ipu_unlink_prpvf_rot_prpvf(struct ipu_soc *ipu);
+int ipu_link_pp_rot_pp(struct ipu_soc *ipu);
+int ipu_unlink_pp_rot_pp(struct ipu_soc *ipu);
+
 /*
  * IPU Display Controller (dc) functions
  */

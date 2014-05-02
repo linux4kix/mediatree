@@ -955,6 +955,165 @@ void ipu_idmac_clear_buffer(struct ipuv3_channel *channel, u32 buf_num)
 }
 EXPORT_SYMBOL_GPL(ipu_idmac_clear_buffer);
 
+/*
+ * Links IPUV3_CHANNEL_IC_PRP_ENC_MEM to IPUV3_CHANNEL_MEM_ROT_ENC
+ */
+int ipu_link_prp_enc_rot_enc(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PRPENC_ROT_SRC_SEL_MASK;
+	fs_proc_flow1 |= (0x07 << FS_PRPENC_ROT_SRC_SEL_OFFSET);
+
+	fs_proc_flow2 &= ~FS_PRPENC_DEST_SEL_MASK;
+	fs_proc_flow2 |= (0x01 << FS_PRPENC_DEST_SEL_OFFSET);
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_link_prp_enc_rot_enc);
+
+/*
+ * Unlinks IPUV3_CHANNEL_IC_PRP_ENC_MEM from IPUV3_CHANNEL_MEM_ROT_ENC
+ */
+int ipu_unlink_prp_enc_rot_enc(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PRPENC_ROT_SRC_SEL_MASK;
+	fs_proc_flow2 &= ~FS_PRPENC_DEST_SEL_MASK;
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_unlink_prp_enc_rot_enc);
+
+/*
+ * Links IPUV3_CHANNEL_IC_PRP_VF_MEM to IPUV3_CHANNEL_MEM_ROT_VF
+ */
+int ipu_link_prpvf_rot_prpvf(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PRPVF_ROT_SRC_SEL_MASK;
+	fs_proc_flow1 |= (0x08 << FS_PRPVF_ROT_SRC_SEL_OFFSET);
+
+	fs_proc_flow2 &= ~FS_PRPVF_DEST_SEL_MASK;
+	fs_proc_flow2 |= (0x01 << FS_PRPVF_DEST_SEL_OFFSET);
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_link_prpvf_rot_prpvf);
+
+/*
+ * Unlinks IPUV3_CHANNEL_IC_PRP_VF_MEM from IPUV3_CHANNEL_MEM_ROT_VF
+ */
+int ipu_unlink_prpvf_rot_prpvf(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PRPVF_ROT_SRC_SEL_MASK;
+	fs_proc_flow2 &= ~FS_PRPVF_DEST_SEL_MASK;
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_unlink_prpvf_rot_prpvf);
+
+/*
+ * Links IPUV3_CHANNEL_IC_PP_MEM to IPUV3_CHANNEL_MEM_ROT_PP
+ */
+int ipu_link_pp_rot_pp(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PP_ROT_SRC_SEL_MASK;
+	fs_proc_flow1 |= (0x05 << FS_PP_ROT_SRC_SEL_OFFSET);
+
+	fs_proc_flow2 &= ~FS_PP_DEST_SEL_MASK;
+	fs_proc_flow2 |= (0x03 << FS_PP_DEST_SEL_OFFSET);
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_link_pp_rot_pp);
+
+/*
+ * Unlinks IPUV3_CHANNEL_IC_PP_MEM from IPUV3_CHANNEL_MEM_ROT_PP
+ */
+int ipu_unlink_pp_rot_pp(struct ipu_soc *ipu)
+{
+	unsigned long flags;
+	u32 fs_proc_flow1;
+	u32 fs_proc_flow2;
+
+	spin_lock_irqsave(&ipu->lock, flags);
+
+	fs_proc_flow1 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW1);
+	fs_proc_flow2 = ipu_cm_read(ipu, IPU_FS_PROC_FLOW2);
+
+	fs_proc_flow1 &= ~FS_PP_ROT_SRC_SEL_MASK;
+	fs_proc_flow2 &= ~FS_PP_DEST_SEL_MASK;
+
+	ipu_cm_write(ipu, fs_proc_flow1, IPU_FS_PROC_FLOW1);
+	ipu_cm_write(ipu, fs_proc_flow2, IPU_FS_PROC_FLOW2);
+
+	spin_unlock_irqrestore(&ipu->lock, flags);
+	return 0;
+}
+EXPORT_SYMBOL_GPL(ipu_unlink_pp_rot_pp);
+
 int ipu_idmac_enable_channel(struct ipuv3_channel *channel)
 {
 	struct ipu_soc *ipu = channel->ipu;
