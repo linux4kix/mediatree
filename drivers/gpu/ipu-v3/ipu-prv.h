@@ -190,6 +190,7 @@ struct ipuv3_channel {
 	struct ipu_soc *ipu;
 };
 
+struct ipu_cpmem;
 struct ipu_csi;
 struct ipu_dc_priv;
 struct ipu_dmfc_priv;
@@ -207,7 +208,6 @@ struct ipu_soc {
 
 	void __iomem		*cm_reg;
 	void __iomem		*idmac_reg;
-	struct ipu_ch_param __iomem	*cpmem_base;
 
 	int			id;
 	int			usecount;
@@ -220,6 +220,7 @@ struct ipu_soc {
 	int			irq_err;
 	struct irq_domain	*domain;
 
+	struct ipu_cpmem	*cpmem_priv;
 	struct ipu_dc_priv	*dc_priv;
 	struct ipu_dp_priv	*dp_priv;
 	struct ipu_dmfc_priv	*dmfc_priv;
@@ -227,6 +228,17 @@ struct ipu_soc {
 	struct ipu_csi		*csi_priv[2];
 	struct ipu_smfc_priv	*smfc_priv;
 };
+
+static inline u32 ipu_idmac_read(struct ipu_soc *ipu, unsigned offset)
+{
+	return readl(ipu->idmac_reg + offset);
+}
+
+static inline void ipu_idmac_write(struct ipu_soc *ipu, u32 value,
+				   unsigned offset)
+{
+	writel(value, ipu->idmac_reg + offset);
+}
 
 void ipu_srm_dp_sync_update(struct ipu_soc *ipu);
 
