@@ -1,0 +1,2 @@
+config MEDIA_IMX_COMMON
+	tristate
