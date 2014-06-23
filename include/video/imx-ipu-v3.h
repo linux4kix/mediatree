@@ -216,6 +216,7 @@ int ipu_smfc_enable(struct ipu_smfc *smfc);
 int ipu_smfc_disable(struct ipu_smfc *smfc);
 int ipu_smfc_map_channel(struct ipu_smfc *smfc, int csi_id, int mipi_id);
 int ipu_smfc_set_burstsize(struct ipu_smfc *smfc, int burstsize);
+int ipu_smfc_set_watermark(struct ipu_smfc *smfc, u32 set_level, u32 clr_level);
 
 #define IPU_CPMEM_WORD(word, ofs, size) ((((word) * 160 + (ofs)) << 8) | (size))
 
