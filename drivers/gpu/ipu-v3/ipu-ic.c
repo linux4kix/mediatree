@@ -813,9 +813,11 @@ static void ipu_vdi_init(struct ipu_ic_priv *priv, u32 pixelfmt,
 }
 
 int ipu_image_deinterlace_convert(struct ipu_soc *ipu, struct ipu_image *in_p,
-		struct ipu_image *in, struct ipu_image *in_n,
-		struct ipu_image *out, void (*complete)(void *ctx, int err),
-		void *complete_context)
+				  struct ipu_image *in, struct ipu_image *in_n,
+				  struct ipu_image *out,
+				  enum ipu_rotate_mode rotation,
+				  void (*complete)(void *ctx, int err),
+				  void *complete_context)
 {
 	struct ipu_ic_priv *priv = ipu->ic_priv;
 	struct ipu_ic_task *task = &priv->task[IC_TASK_VIEWFINDER];
@@ -877,6 +879,7 @@ EXPORT_SYMBOL_GPL(ipu_image_deinterlace_convert);
 
 int ipu_image_convert(struct ipu_soc *ipu, struct ipu_image *in,
 		      struct ipu_image *out,
+		      enum ipu_rotate_mode rotation,
 		      void (*complete)(void *ctx, int err),
 		      void *complete_context)
 {
