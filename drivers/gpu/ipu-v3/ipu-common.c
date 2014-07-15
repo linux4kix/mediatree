@@ -1175,19 +1175,13 @@ static const struct ipu_platform_reg client_reg[] = {
 	}, {
 		.pdata = {
 			.csi = 0,
-			.dma[0] = IPUV3_CHANNEL_CSI0,
-			.dma[1] = -EINVAL,
 		},
-		.reg_offset = IPU_CM_CSI0_REG_OFS,
-		.name = "imx-ipuv3-camera",
+		.name = "imx-ipuv3-csi",
 	}, {
 		.pdata = {
 			.csi = 1,
-			.dma[0] = IPUV3_CHANNEL_CSI1,
-			.dma[1] = -EINVAL,
 		},
-		.reg_offset = IPU_CM_CSI1_REG_OFS,
-		.name = "imx-ipuv3-camera",
+		.name = "imx-ipuv3-csi",
 	},
 };
 
